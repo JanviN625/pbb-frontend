@@ -1,0 +1,35 @@
+.summary-anchored {
+  position: sticky;
+  top: 48px;
+  background: white;
+  padding: 1% 2%;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+}
+
+.summary-info {
+  display: flex;
+  gap: 5%;
+  width: 90%;
+  font-weight: normal;
+  color: var(--value-color);
+  font-size: 1.1em;
+}
+
+.summary-info > div {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-label {
+  color: var(--label-color);
+  font-weight: 600;
+  margin-bottom: 0.25em;
+}
+
+.summary-value {
+  color: var(--value-color);
+  font-weight: 400;
+}

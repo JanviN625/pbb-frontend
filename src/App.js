@@ -1,66 +1,72 @@
 import "./App.css";
-import React from "react";
-import Dropdown from "./Dropdown";
-import "./Styles.css";
+import React, { useState } from "react";
+import QuestionForm from "./components/QuestionForm";
+import Summary from "./components/Summary";
 
 function App() {
+  const [submitted, setSubmitted] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [summary, setSummary] = useState({
+    book: [],
+    language: "",
+    format: "",
+    question: "",
+  });
+  const [error, setError] = useState("");
+  const [hideForm, setHideForm] = useState(false);
+
+  const handleSubmit = () => {
+    if (
+      summary.book.length === 0 ||
+      !summary.language ||
+      !summary.format ||
+      !summary.question.trim()
+    ) {
+      setError("Please complete all fields before submitting.");
+      return;
+    }
+
+    setIsAnimating(true);
+    setError("");
+
+    setTimeout(() => {
+      setHideForm(true);
+      setSubmitted(true);
+      setIsAnimating(false);
+    }, 800);
+  };
+
+  const handleChange = (field, value) => {
+    setSummary((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <h1>PureBhaktiBase - Ask your question</h1>
+        <h1>Pure BhaktiBase - Ask your question</h1>
       </header>
       <main>
-        <table>
-          <tbody>
-            <tr>
-              <td>
-                <Dropdown
-                  label="Book Title"
-                  options={["Option 1", "Option 2", "Option 3"]}
-                  selected=""
-                  onChange={(e) => console.log(e.target.value)}
-                />
-              </td>
-              <td>
-                <Dropdown
-                  label="Language"
-                  options={["English", "Hindi", "Tamil"]}
-                  selected=""
-                  onChange={(e) => console.log(e.target.value)}
-                />
-              </td>
-              <td>
-                <Dropdown
-                  label="Output Format"
-                  options={["Table", "Text", "JSON"]}
-                  selected=""
-                  onChange={(e) => console.log(e.target.value)}
-                />
-              </td>
-            </tr>
+        {error && <p className="error-message">{error}</p>}
 
-            <tr>
-              <td colSpan="3">
-                <h3>Your question</h3>
-                <textarea
-                  rows="4"
-                  cols="80"
-                  placeholder="Type your question here"
-                  onChange={(e) => console.log(e.target.value)}
-                />
-              </td>
-            </tr>
+        {!hideForm && (
+          <QuestionForm
+            summary={summary}
+            onChange={handleChange}
+            onSubmit={handleSubmit}
+            isAnimating={isAnimating}
+          />
+        )}
 
-            <tr>
-              <td colSpan="3" style={{ textAlign: "center" }}>
-                <button onClick={() => console.log("Submit button clicked")}>
-                  Submit Question
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        {submitted && <Summary summary={summary}/>}
       </main>
+      <footer>
+        <p>
+          &copy; {new Date().getFullYear()} Pure BhaktiBase. All rights reserved. All glories to Srila Gurudeva and Srila Prabhupada.
+        </p>
+      </footer>
     </div>
   );
 }
