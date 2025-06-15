@@ -1,11 +1,12 @@
 .summary-anchored {
   position: sticky;
-  top: 48px;
+  top: 48px; /* height of header */
   background: white;
-  padding: 1% 2%;
-  z-index: 99;
+  z-index: 109; /* below header */
   display: flex;
   justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  height: 64px; /* fixed height */
 }
 
 .summary-info {
@@ -14,7 +15,7 @@
   width: 90%;
   font-weight: normal;
   color: var(--value-color);
-  font-size: 1.1em;
+  font-size: clamp(1em, 1.1vw, 1.1em);
 }
 
 .summary-info > div {
@@ -27,9 +28,29 @@
   color: var(--label-color);
   font-weight: 600;
   margin-bottom: 0.25em;
+  font-size: clamp(0.9em, 1vw, 1em);
 }
 
 .summary-value {
   color: var(--value-color);
   font-weight: 400;
+  font-size: clamp(1em, 1.1vw, 1.1em);
+}
+
+/* Responsive for small screens: stack summary info */
+@media (max-width: 768px) {
+  .summary-info {
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1em;
+  }
+
+  .summary-info > div {
+    width: 100%;
+  }
+
+  .summary-anchored {
+    height: auto;
+    padding: 1% 4%;
+  }
 }

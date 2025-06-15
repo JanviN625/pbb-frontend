@@ -1,13 +1,20 @@
 .chatbot-area {
+  position: fixed;
+  top: 190px; /* header (48px) + summary (64px) + some padding */
+  bottom: 80px; /* footer height */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 900px;
+  background: var(--secondary-color);
+  border-radius: 8px 8px 0 0;
+  padding: 1%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  height: 75vh;
-  width: 90%;
-  margin: 2% auto;
-  padding: 2%;
-  background: var(--secondary-color);
-  border-radius: 8px;
-  box-sizing: border-box;
+  overflow: hidden;
+  z-index: 108; /* below summary and footer */
+  font-size: clamp(0.9rem, 1vw, 1rem);
 }
 
 .chatbot-messages {
@@ -23,7 +30,7 @@
   max-width: 75%;
   padding: 10px;
   border-radius: 12px;
-  font-size: 0.95rem;
+  font-size: inherit;
   white-space: pre-wrap;
   box-sizing: border-box;
 }
@@ -52,7 +59,7 @@
 .chatbot-input {
   width: 100%;
   padding: 8px;
-  font-size: 16px;
+  font-size: clamp(14px, 1vw, 16px);
   border: none;
   border-radius: 4px;
   background-color: white;
@@ -87,3 +94,23 @@
   50% { opacity: 1; }
 }
 
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .chatbot-area {
+    top: 160px;  /* header + summary smaller */
+    bottom: 70px; /* footer */
+    padding: 1.5%;
+    font-size: 0.95rem;
+  }
+
+  .chatbot-input {
+    height: 80px;
+  }
+}
+
+/* Wider screens */
+@media (min-width: 1600px) {
+  .chatbot-area {
+    max-width: 1200px;
+  }
+}

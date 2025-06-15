@@ -26,7 +26,22 @@ td {
 }
 
 .form-wrapper.slide-up {
-  transform: translateY(-150px);
+  transform: translateY(-300px);
   opacity: 0;
   pointer-events: none;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+/* Responsive: stack dropdowns on smaller screens */
+@media (max-width: 768px) {
+  table, tbody, tr, td {
+    display: block;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  td {
+    margin-bottom: 1rem;
+  }
 }
