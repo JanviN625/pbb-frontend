@@ -64,7 +64,7 @@ function App() {
       </main>
       <footer>
         <p>
-          &copy; {new Date().getFullYear()} Pure BhaktiBase. All rights reserved. All glories to Srila Gurudeva and Srila Prabhupada.
+          &copy; {new Date().getFullYear()} Pure BhaktiBase. All rights reserved. All glories to Srila Gurudeva.
         </p>
       </footer>
     </div>

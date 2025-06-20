@@ -5,8 +5,16 @@
   font-size: 16px;
 }
 
-.dropdown-header,
-.dropdown-wrapper select {
+.dropdown-label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 600;
+  color: var(--label-color);
+  font-size: 14px;
+}
+
+/* When NOT searchable, show the header box */
+.dropdown-header {
   width: 100%;
   padding: 8px;
   padding-right: 7%;
@@ -15,18 +23,46 @@
   border: none;
   border-radius: 4px;
   box-sizing: border-box;
-  appearance: none;
   font-family: inherit;
-  background-image: url("data:image/svg+xml;utf8,<svg fill='%231e88e5' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 16px;
   cursor: pointer;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Remove default arrow background here */
+  background-image: none;
 }
 
+.dropdown-selected {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+/* Always position arrow top-right */
+.dropdown-arrow {
+  position: absolute;
+  right: 12px;
+  top: 36px; /* adjust to vertical center depending on height */
+  pointer-events: none;
+  color: var(--primary-color);
+  font-size: 14px;
+}
+
+/* Search input replaces header when searchable */
+.dropdown-search-input {
+  width: 100%;
+  padding: 8px 30px 8px 8px; /* leave room on right for arrow */
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--secondary-color);
+  box-sizing: border-box;
+  outline: none;
+  position: relative;
+}
+
+/* Options panel */
 .dropdown-options {
   position: absolute;
   top: 100%;
@@ -41,17 +77,38 @@
   z-index: 10;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   font-family: inherit;
+  padding: 0;
+  list-style: none;
+  max-width: 100%;
 }
 
-.dropdown-options label {
-  display: block;
+.dropdown-options li {
   padding: 8px;
   font-size: 14px;
-  width: 100%;
   box-sizing: border-box;
   cursor: pointer;
 }
 
+.dropdown-options li:hover {
+  background-color: var(--secondary-color);
+}
+
+.dropdown-options label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  cursor: pointer;
+}
+
 .dropdown-options input[type="checkbox"] {
-  margin-right: 8px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.no-options {
+  padding: 8px;
+  color: #999;
+  font-style: italic;
+  cursor: default;
 }

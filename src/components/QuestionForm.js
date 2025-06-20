@@ -12,10 +12,18 @@ function QuestionForm({ summary, onChange, onSubmit, isAnimating }) {
               <div className="field-wrapper">
                 <Dropdown
                   label="Book Title"
-                  options={["Option 1", "Option 2", "Option 3", "Option 4", "Option 5", "Option 6"]}
+                  options={[
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4",
+                    "Option 5",
+                    "Option 6"
+                  ]}
                   selected={summary.book}
                   onChange={(value) => onChange("book", value)}
                   multiSelect={true}
+                  searchable={true}
                 />
               </div>
             </td>
@@ -25,7 +33,9 @@ function QuestionForm({ summary, onChange, onSubmit, isAnimating }) {
                   label="Language"
                   options={["English", "Hindi", "Tamil"]}
                   selected={summary.language}
-                  onChange={(e) => onChange("language", e.target.value)}
+                  onChange={(value) => onChange("language", value)}
+                  multiSelect={false}
+                  searchable={true}
                 />
               </div>
             </td>
@@ -35,7 +45,9 @@ function QuestionForm({ summary, onChange, onSubmit, isAnimating }) {
                   label="Output Format"
                   options={["Table", "Text", "JSON"]}
                   selected={summary.format}
-                  onChange={(e) => onChange("format", e.target.value)}
+                  onChange={(value) => onChange("format", value)}
+                  multiSelect={false}
+                  searchable={false}
                 />
               </div>
             </td>
